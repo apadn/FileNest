@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-label="FileNest">
+  <defs>
+    <linearGradient id="bg" x1="0.08" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#6CBAFF"/>
+      <stop offset="0.5" stop-color="#187CF0"/>
+      <stop offset="1" stop-color="#0055C8"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.3" cy="0.1" r="0.78">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sheet" x1="0.1" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#E4F1FF"/>
+      <stop offset="1" stop-color="#BCD9FE"/>
+    </linearGradient>
+    <linearGradient id="folder" x1="0.12" y1="0" x2="0.5" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.72" stop-color="#F3F9FF"/>
+      <stop offset="1" stop-color="#DDECFF"/>
+    </linearGradient>
+    <linearGradient id="flap" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="1" stop-color="#96C4FF" stop-opacity="0.5"/>
+    </linearGradient>
+    <filter id="shadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="22" stdDeviation="30" flood-color="#00306E" flood-opacity="0.32"/>
+    </filter>
+    <clipPath id="squircle">
+      <rect x="0" y="0" width="1024" height="1024" rx="228" ry="228"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#squircle)">
+    <rect width="1024" height="1024" fill="url(#bg)"/>
+    <rect width="1024" height="1024" fill="url(#glow)"/>
+
+    <g filter="url(#shadow)">
+      <!-- 文件夹里露出的纸张 -->
+      <rect x="472" y="228" width="272" height="220" rx="30" fill="url(#sheet)"/>
+
+      <!-- 文件夹：标签与主体一体的单路径 -->
+      <path
+        d="M250 306
+           H 386
+           A 40 40 0 0 1 417 318
+           L 458 366
+           H 774
+           A 58 58 0 0 1 832 424
+           V 712
+           A 58 58 0 0 1 774 770
+           H 250
+           A 58 58 0 0 1 192 712
+           V 364
+           A 58 58 0 0 1 250 306
+           Z"
+        fill="url(#folder)"
+      />
+
+      <!-- 前片：制造层次 -->
+      <path
+        d="M192 566
+           H 832
+           V 712
+           A 58 58 0 0 1 774 770
+           H 250
+           A 58 58 0 0 1 192 712
+           Z"
+        fill="url(#flap)"
+      />
+    </g>
+  </g>
+</svg>

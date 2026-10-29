@@ -1,0 +1,12 @@
+node_modules/
+data/
+.testdata/
+dist/
+web/dist/
+*.log
+.DS_Store
+.env
+.env.local
+
+# 构建产物（镜像 tar 太大，用 GitHub Releases 分发）
+release/

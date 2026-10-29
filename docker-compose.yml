@@ -1,0 +1,34 @@
+services:
+  filenest:
+    build: .
+    image: filenest:latest
+    # 用已构建好的镜像（不从源码构建）时，注释掉上面的 build: . 并改成：
+    # image: <你的用户名>/filenest:1.0.0
+    # 发布镜像为 linux/amd64；x86_64 主机无需指定，ARM 主机跑 amd64 镜像时才需要下面这行
+    # platform: linux/amd64
+    container_name: filenest
+    restart: unless-stopped
+    ports:
+      - '8080:8080'
+    environment:
+      TZ: Asia/Shanghai
+      SITE_NAME: FileNest
+      # 单用户模式：默认关闭自助注册（注册出来的账户没有文件权限）
+      ALLOW_REGISTRATION: 'false'
+      # 单个文件上传上限（MB），0 表示不限制
+      MAX_UPLOAD_MB: '2048'
+      # 解压后体积上限（MB），防 zip 炸弹
+      MAX_EXTRACT_MB: '102400'
+      # 只有放在 Nginx/Caddy 后面才设为 true，否则客户端可伪造 X-Forwarded-For 绕过限速
+      TRUST_PROXY: 'false'
+      # 同时执行的后台解压/压缩任务数
+      MAX_CONCURRENT_TASKS: '2'
+      # 与宿主机用户对齐，避免挂载目录权限问题（Linux 下用 `id -u` / `id -g`）
+      PUID: '1000'
+      PGID: '1000'
+    volumes:
+      # 应用数据（账号、密钥、默认文件区）
+      - ./data:/data
+      # 想直接管理宿主机的某个目录，取消下面这行并设置 FILES_DIR=/storage
+      # - /volume1/downloads:/storage
+    # environment 里再加 FILES_DIR: /storage 即可把挂载目录作为文件根目录
